@@ -53,7 +53,11 @@ Event.observe(document, 'dom:loaded', function () {
                         if($('billing:lastname')) $('billing:lastname').setValue(json.last_name);
                         if($('billing:company')) $('billing:company').setValue('');
                         if($('billing:street1')) $('billing:street1').setValue(json.address_1);
-                        if($('billing:street2')) $('billing:street2').setValue(json.address_2);
+                        if($('billing:street2')){
+                            //WHEN payex gives us a space -> validation will crash. So sanitize json input
+                            // replace(/^\s+/,"") === ltrim()
+                            $('billing:street2').setValue(json.address_2.replace(/^\s+/,""));
+                        }
                         if($('billing:city')) $('billing:city').setValue(json.city);
                         if($('billing:region')) $('billing:region').setValue('');
                         if($('billing:postcode')) $('billing:postcode').setValue(json.postcode);

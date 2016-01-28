@@ -1,0 +1,90 @@
+
+<li class="fields">
+    <div class="field">
+        <label for="socialSecurityNumber"><?php echo Mage::helper('aait_ssn')->__('Social Security Number'); ?></label>
+        <div class="input-box">
+            <input type="text" title="<?php echo Mage::helper('aait_ssn')->__('Social Security Number'); ?>" name="socialSecurityNumber" id="socialSecurityNumber" class="input-text" />
+        </div>
+    </div>
+    <div class="field">
+        <button type="button" title="<?php echo Mage::helper('aait_ssn')->__('Get Address'); ?>" class="button" id="ssn_click"><span><span><?php echo Mage::helper('aait_ssn')->__('Get Address'); ?></span></span></button>
+    </div>
+
+    <?php // TODO: hide this block and disable the fields inside, if ssn is empty ?>
+    <div class="get-address-extra-info">
+        <div class="field">
+            <label for="check_postcode" class="required"><em>*</em><?php echo Mage::helper('aait_ssn')->__('Zip/Postal Code'); ?></label>
+            <div class="input-box">
+                <input type="text" title="<?php echo Mage::helper('aait_ssn')->__('Zip/Postal Code'); ?>" name="check_postcode" id="check_postcode" class="input-text validate-zip required-entry" />
+            </div>
+        </div>
+        <div class="clearer">&nbsp;</div>
+        <div class="field">
+            <label for="check_country" class="required"><em>*</em><?php echo Mage::helper('aait_ssn')->__('Country'); ?></label>
+            <div class="input-box">
+                <select name="check_country" id="check_country" class="validate-select required-entry" title="Country">
+                    <option value="SE" selected="selected"><?php echo Mage::helper('aait_ssn')->__('Sweden'); ?></option>
+                    <option value="NO"><?php echo Mage::helper('aait_ssn')->__('Norway'); ?></option>
+                </select>
+            </div>
+        </div>
+    </div>
+</li>
+
+<script type="text/javascript">
+    //<![CDATA[
+    if(typeof MAGENTO_BASE_URL == "undefined"){
+        var MAGENTO_BASE_URL = "<?php echo Mage::getBaseUrl(); ?>";
+    }
+
+    // handle open/close of the zip/country-selectors for get address
+    (function(){
+        var observer = function(){
+            if($('socialSecurityNumber').value == ''){
+                $$('.get-address-extra-info').each(function(box){
+                    box.style.display='none';
+                    box.select('.required-entry').each(function(input){
+                        input.disabled = true;
+                    })
+                })
+            } else {
+                $$('.get-address-extra-info').each(function(box){
+                    box.style.display='block';
+                    box.select('.required-entry').each(function(input){
+                        input.disabled = false;
+                    })
+                })
+            }
+        };
+
+        $('socialSecurityNumber')
+            .observe("change",observer)
+            .observe("keyup",observer)
+            .observe("focus",observer)
+            .observe("blur",observer);
+
+        observer(); // initial state
+    })();
+
+    // recreate the validator function
+    // Have to do this since we cant have a form within a form
+    window.PAYEX_SSN_FORM = {
+        validator:{
+            validate:function(){
+
+
+                var ssn = $$('[name="socialSecurityNumber"]')[0];
+                var country_code = $$('[name="check_country"]')[0];
+                var postcode = $$('[name="check_postcode"]')[0];
+
+                var allOk = true;
+                if(!Validation.validate(ssn)) allOk = false;
+                if(!Validation.validate(country_code)) allOk = false;
+                if(!Validation.validate(postcode)) allOk = false;
+
+                return allOk;
+            }
+        }
+    };
+    //]]>
+</script>

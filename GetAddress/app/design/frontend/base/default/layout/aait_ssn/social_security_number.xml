@@ -17,7 +17,7 @@
         <reference name='billing.additional_fields.top'>
             <block type="core/template" name="payex_ssn.field">
                 <action method="setTemplate" ifconfig="aait_ssn/aait_ssn/active">
-                    <template>checkout/iwd_opc/ssn.phtml</template>
+                    <template>payex/ssn/iwd_opc/ssn.phtml</template>
                 </action>
             </block>
         </reference>

@@ -69,6 +69,7 @@
                     </partpayment>
                 </totals>
             </quote>
+            <!-- disabled due to https://github.com/PayEx/Magento-modules/issues/11
             <order_invoice>
                 <totals>
                     <partpayment>
@@ -76,6 +77,7 @@
                     </partpayment>
                 </totals>
             </order_invoice>
+            -->
         </sales>
 
         <events>

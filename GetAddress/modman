@@ -5,5 +5,6 @@
 app/code/community/AAIT/SocialSecurityNumber
 app/design/frontend/base/default/layout/aait_ssn
 app/design/frontend/base/default/template/checkout/onepage/billing_with_ssn.phtml
+app/design/frontend/base/default/template/payex/ssn/
 app/etc/modules/AAIT_SocialSecurityNumber.xml
 js/aait_ssn
