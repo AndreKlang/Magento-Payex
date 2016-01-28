@@ -9,7 +9,7 @@ class AAIT_Wywallet_Block_Info extends Mage_Payment_Block_Info
         $this->setTemplate('wywallet/info.phtml');
         // Template for Checkout page
         if ($this->getRequest()->getRequestedActionName() === 'progress') {
-            $this->setTemplate('wywallet/title.phtml');
+            //$this->setTemplate('wywallet/title.phtml'); // evalent: template does not exist?
         }
 
     }

@@ -54,6 +54,15 @@
                 </aait_ssn>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <AAIT_SocialSecurityNumber>
+                    <files>
+                        <default>AAIT_SocialSecurityNumber.csv</default>
+                    </files>
+                </AAIT_SocialSecurityNumber>
+            </modules>
+        </translate>
 
     </frontend>
 </config>

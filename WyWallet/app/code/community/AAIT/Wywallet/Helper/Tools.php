@@ -122,8 +122,8 @@ class AAIT_Wywallet_Helper_Tools extends Mage_Core_Helper_Abstract
             return $errorMessage;
         }
 
-        $errorCode = $details['transactionErrorCode'];
-        $errorDescription = $details['transactionThirdPartyError'];
+        $errorCode = isset($details['transactionErrorCode']) ? $details['transactionErrorCode'] : '';
+        $errorDescription = isset($details['transactionThirdPartyError']) ? $details['transactionThirdPartyError'] : '';
         if (empty($errorCode) && empty($errorDescription)) {
             $errorCode = $details['code'];
             $errorDescription = $details['description'];
