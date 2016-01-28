@@ -54,7 +54,8 @@ class AAIT_SocialSecurityNumber_GetaddrController extends Mage_Core_Controller_F
             return;
         }
 
-        $postcode = $this->getRequest()->getParam('postcode');
+        //strip whitespaces from postcode to pass validation
+        $postcode = preg_replace('/\s+/', '', $this->getRequest()->getParam('postcode'));
         if (empty($postcode)) {
             $data = array(
                 'success' => false,
