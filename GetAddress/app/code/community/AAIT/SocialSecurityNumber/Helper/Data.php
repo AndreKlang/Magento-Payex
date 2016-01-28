@@ -35,7 +35,7 @@ class AAIT_SocialSecurityNumber_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getNameParser()
     {
-        if (!class_exists('FullNameParser')) {
+        if (!class_exists('FullNameParser',false)) {
             require_once dirname(__FILE__) . '/../library/parser.php';
         }
 
